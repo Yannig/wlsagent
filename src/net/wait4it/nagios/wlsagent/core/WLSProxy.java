@@ -70,7 +70,7 @@ public class WLSProxy {
      * @throws Exception
      */
     public void init() throws Exception {
-        Map<String, String> map = new HashMap<String,String>();
+        Map<String, Object> map = new HashMap<String,Object>();
 
         // User credentials
         map.put(Context.SECURITY_PRINCIPAL, params.get("username"));
@@ -78,7 +78,7 @@ public class WLSProxy {
 
         // We use a t3 connector with a 20 seconds timeout
         map.put(JMXConnectorFactory.PROTOCOL_PROVIDER_PACKAGES, "weblogic.management.remote");
-        map.put("jmx.remote.x.request.waiting.timeout", "20000");
+        map.put("jmx.remote.x.request.waiting.timeout", 20000L);
 
         // We build the URL with the 'hostname' and 'port' params
         JMXServiceURL url = new JMXServiceURL("service:jmx:t3://" + params.get("hostname") + ":" + params.get("port") + JNDI_NAME);
